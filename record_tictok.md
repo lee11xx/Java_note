@@ -292,6 +292,30 @@ https://juejin.cn/post/6988340287559073799#heading-8
 
 
 
+==1.17==
+
+`$ git push origin main
+fatal: unable to access 'https://github.com/lee11xx/Java_note.git/': Failed to connect to github.com port 443 after 21144 ms: Timed out`
+
+https://blog.csdn.net/Hodors/article/details/103226958
+
+疑问：
+
+```java
+public Users updateUserInfo(UpdatedUserBO updatedUserBO) {
+    // 因为是个 BO 对象，要做一个值拷贝到 User 对象
+    Users pendingUser = new Users();
+    BeanUtils.copyProperties(updatedUserBO, pendingUser);
+
+    int result = usersMapper.updateByPrimaryKeySelective(pendingUser);
+    if (result != 1) {
+        GraceException.display(ResponseStatusEnum.USER_UPDATE_ERROR);
+    }
+
+    return getUser(updatedUserBO.getId());
+}
+```
+
 
 
 
