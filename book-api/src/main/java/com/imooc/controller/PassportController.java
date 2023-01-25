@@ -1,5 +1,6 @@
 package com.imooc.controller;
 
+import com.imooc.base.BaseInfoProperties;
 import com.imooc.bo.RegistLoginBO;
 import com.imooc.grace.result.GraceJSONResult;
 import com.imooc.grace.result.ResponseStatusEnum;

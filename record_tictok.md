@@ -114,13 +114,69 @@ uniapp 实现跨平台，一套代码开发更多应用。
 
 
 
+#### 短视频业务模块
+
+1.传统上传流程
+
+![image-20230124112339800](https://cdn.jsdelivr.net/gh/lee11xx/picgo-img/typora/202301241123806.png)
+
+问题
+
+![image-20230124112658940](https://cdn.jsdelivr.net/gh/lee11xx/picgo-img/typora/202301241126053.png)
+
+2.CDN 上传流程
+
+![image-20230124112945615](https://cdn.jsdelivr.net/gh/lee11xx/picgo-img/typora/202301241129677.png)
+
+对比
+
+![image-20230124112915569](https://cdn.jsdelivr.net/gh/lee11xx/picgo-img/typora/202301241129655.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 ## 项目记录
 
-### 12.24-12.25
+### month 1
+
+2 + 2 + 2 + 4 = 10
+
+#### 12.24-12.25
 
 ==12.24==
 
@@ -164,7 +220,7 @@ user 表 id 是 varchar，后续分库分表要用字符串。
 
 
 
-### 12.26-1.1
+#### 12.26-1.1
 
 ==12.26==
 
@@ -192,7 +248,7 @@ SpringBoot 整合腾讯云验证码
 
 
 
-### 1.2-1.8
+#### 1.2-1.8
 
 ==1.4==
 
@@ -234,7 +290,7 @@ Redis 限制单个 ip 60秒发一次验证码，并存验证码。
 
 
 
-### 1.9 - 1.15
+#### 1.9 - 1.15
 
 ==1.10==
 
@@ -276,7 +332,11 @@ picgo 上传图片失败：github 生成的 token 没有勾选 repo 权限。
 
 
 
-### 1.16 - 2.22
+### month 2
+
+3 + 
+
+#### 1.16 - 1.22
 
 ==1.16==
 
@@ -317,6 +377,79 @@ public Users updateUserInfo(UpdatedUserBO updatedUserBO) {
 ```
 
 
+
+==1.19==
+
+dockerhub 上搜 minio 出来都不是官方的，也没找到官方认证的镜像。
+
+还是参考了一下别人的博客，才知道下错了。
+
+https://blog.csdn.net/weixin_43888891/article/details/122021704
+
+docker search minio 和 dockerhub 上搜 minio 得出来的结果不一样。前者是 stars 排序，而后者是下载排序，还是用前者吧，被坑了。
+
+> 还是多参考博客吧，给官网整死了。
+
+`共享文件时，生成的链接访问不了`
+
+```c++
+docker run -p 9000:9000 -p 9090:9090 \
+ --net=host \
+ --name minio \
+ -d --restart=always \
+ -e "MINIO_ACCESS_KEY=username" \
+ -e "MINIO_SECRET_KEY=password123456" \
+ -e "MINIO_SERVER_URL= http://宿主机ip:宿主机映射的9000端口" \
+ -v /data:/data \
+ minio/minio server \
+ /data --console-address ":9090" -address ":9000"
+```
+
+```c++
+docker run -p 9000:9000 -p 9111:9111 \
+ --name minio \
+ -d --restart=always \
+ -e "MINIO_ACCESS_KEY=lee" \
+ -e "MINIO_SECRET_KEY=lxc010409" \
+ -e "MINIO_SERVER_URL=http://192.168.0.111:9000" \
+ -v /usr/local/minio/data:/data \
+ minio/minio server \
+ /data --console-address ":9111" -address ":9000"
+```
+
+----
+
+最后回到原点，能上传图片和修改用户头像、背景的 URL，但是访问不了，还是透明图片。
+
+应该是因为 minio 上传图片的 api，调用后生成的分享链接是一个下载链接，新版本也预览不了。
+
+
+
+#### 1.23 - 1.29
+
+==1.23==
+
+内网互通原则。
+
+前端没问题，手机能显示头像和背景的图片。但是访问不到 centos 的地址，故而也访问不到 minio 生成的图片链接。
+
+> centos7 链接 wifi
+
+走不通，达到目的就行。故而转换问题：如何让手机和 centos 在同一网段，可以网络配置改为桥接模式，勾选 复制物理连接网络状态。
+
+
+
+==1.24==
+
+修改头像和背景 成功。
+
+限制上传的文件大小。
+
+完结 用户业务模块。
+
+----
+
+短视频业务模块。
 
 
 
