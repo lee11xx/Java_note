@@ -19,7 +19,7 @@ spring:
       connection-test-query: SELECT 1
 
 redis:
-  host: 192.168.0.111 # Linux
+  host: 192.168.0.112 # Linux
   port: 6379
   database: 0
   password: lxc010409
@@ -30,8 +30,8 @@ redis:
 
 # MinIO 配置
 minio:
-  endpoint: http://192.168.0.111:9000      # MinIO服务地址
-  fileHost: http://192.168.0.111:9000      # 文件地址host
+  endpoint: http://192.168.0.112:9000      # MinIO服务地址
+  fileHost: http://192.168.0.112:9000      # 文件地址host
   bucketName: lee                      # 存储桶 bucket名称
   accessKey: lee                         # 用户名
   secretKey: lxc010409                     # 密码

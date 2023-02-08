@@ -52,66 +52,66 @@ public class VlogController extends BaseInfoProperties {
                                   @RequestParam String vlogId) {
         return GraceJSONResult.ok(vlogService.getVlogDetailById(userId, vlogId));
     }
-//
-//
-//    @PostMapping("changeToPrivate")
-//    public GraceJSONResult changeToPrivate(@RequestParam String userId,
-//                                           @RequestParam String vlogId) {
-//        vlogService.changeToPrivateOrPublic(userId,
-//                                            vlogId,
-//                                            YesOrNo.YES.type);
-//        return GraceJSONResult.ok();
-//    }
-//
-//    @PostMapping("changeToPublic")
-//    public GraceJSONResult changeToPublic(@RequestParam String userId,
-//                                           @RequestParam String vlogId) {
-//        vlogService.changeToPrivateOrPublic(userId,
-//                vlogId,
-//                YesOrNo.NO.type);
-//        return GraceJSONResult.ok();
-//    }
-//
-//
-//
-//    @GetMapping("myPublicList")
-//    public GraceJSONResult myPublicList(@RequestParam String userId,
-//                                     @RequestParam Integer page,
-//                                     @RequestParam Integer pageSize) {
-//
-//        if (page == null) {
-//            page = COMMON_START_PAGE;
-//        }
-//        if (pageSize == null) {
-//            pageSize = COMMON_PAGE_SIZE;
-//        }
-//
-//        PagedGridResult gridResult = vlogService.queryMyVlogList(userId,
-//                                                                page,
-//                                                                pageSize,
-//                                                                YesOrNo.NO.type);
-//        return GraceJSONResult.ok(gridResult);
-//    }
-//
-//    @GetMapping("myPrivateList")
-//    public GraceJSONResult myPrivateList(@RequestParam String userId,
-//                                        @RequestParam Integer page,
-//                                        @RequestParam Integer pageSize) {
-//
-//        if (page == null) {
-//            page = COMMON_START_PAGE;
-//        }
-//        if (pageSize == null) {
-//            pageSize = COMMON_PAGE_SIZE;
-//        }
-//
-//        PagedGridResult gridResult = vlogService.queryMyVlogList(userId,
-//                page,
-//                pageSize,
-//                YesOrNo.YES.type);
-//        return GraceJSONResult.ok(gridResult);
-//    }
-//
+
+
+    @PostMapping("changeToPrivate")
+    public GraceJSONResult changeToPrivate(@RequestParam String userId,
+                                           @RequestParam String vlogId) {
+        vlogService.changeToPrivateOrPublic(userId,
+                                            vlogId,
+                                            YesOrNo.YES.type);
+        return GraceJSONResult.ok();
+    }
+
+    @PostMapping("changeToPublic")
+    public GraceJSONResult changeToPublic(@RequestParam String userId,
+                                           @RequestParam String vlogId) {
+        vlogService.changeToPrivateOrPublic(userId,
+                vlogId,
+                YesOrNo.NO.type);
+        return GraceJSONResult.ok();
+    }
+
+
+
+    @GetMapping("myPublicList")
+    public GraceJSONResult myPublicList(@RequestParam String userId,
+                                     @RequestParam Integer page,
+                                     @RequestParam Integer pageSize) {
+
+        if (page == null) {
+            page = COMMON_START_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = COMMON_PAGE_SIZE;
+        }
+
+        PagedGridResult gridResult = vlogService.queryMyVlogList(userId,
+                                                                page,
+                                                                pageSize,
+                                                                YesOrNo.NO.type);
+        return GraceJSONResult.ok(gridResult);
+    }
+
+    @GetMapping("myPrivateList")
+    public GraceJSONResult myPrivateList(@RequestParam String userId,
+                                        @RequestParam Integer page,
+                                        @RequestParam Integer pageSize) {
+
+        if (page == null) {
+            page = COMMON_START_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = COMMON_PAGE_SIZE;
+        }
+
+        PagedGridResult gridResult = vlogService.queryMyVlogList(userId,
+                page,
+                pageSize,
+                YesOrNo.YES.type);
+        return GraceJSONResult.ok(gridResult);
+    }
+
 //    @GetMapping("myLikedList")
 //    public GraceJSONResult myLikedList(@RequestParam String userId,
 //                                         @RequestParam Integer page,
